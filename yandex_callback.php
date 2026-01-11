@@ -1,5 +1,6 @@
 <?php
 require_once 'config_yandex.php';
+require_once 'database_config.php';
 
 // Проверяем наличие кода авторизации
 if (!isset($_GET['code'])) {
@@ -60,8 +61,7 @@ $user_info = json_decode($user_response, true);
 
 // Проверяем, есть ли пользователь в базе данных
 try {
-    $conn = new PDO("mysql:host=localhost;dbname=ACCESSORIES", "root", "741852Bora!");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn = getDB();
     
     $yandex_id = $user_info['id'];
     $email = $user_info['default_email'] ?? '';

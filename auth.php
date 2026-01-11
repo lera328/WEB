@@ -1,12 +1,13 @@
 <?php
+require_once 'database_config.php';
+
 // Обработка отправки формы
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input_login    = $_POST['username'] ?? '';
     $input_password = $_POST['password'] ?? '';
 
     try {
-        $conn = new PDO("mysql:host=localhost;dbname=ACCESSORIES", "root", "741852Bora!");
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn = getDB();
         
         $stmt = $conn->prepare("SELECT password FROM admins WHERE username = ?");
         $stmt->execute([$input_login]);
@@ -20,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Успешная авторизация
                 session_start();
                 $_SESSION['user'] = $input_login;
-                header('Location: index.php');
+                $_SESSION['admin_logged_in'] = true;
+                header('Location: admin.php');
                 exit();
             } else {
                 $error = "Неверный пароль";
@@ -48,11 +50,6 @@ $yandex_auth_url = YANDEX_AUTH_URL . '?' . http_build_query([
     'state' => $_SESSION['yandex_state'],
     'scope' => 'login:email login:info'
 ]);
-
-// Функция для отображения формы с ошибкой
-function showError($error) {
-    return "<div style='color: red; margin-bottom: 15px; text-align: center;'>$error</div>";
-}
 ?>
 
 <!DOCTYPE html>
