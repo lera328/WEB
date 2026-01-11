@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>Комплектующие для ПК</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="https://20.img.avito.st/image/1/1.U1irNba26bGdkn23gQAYN9yX_bEXtP2zHYL9.gRljDo8KkuQCNStrHOmGgCLdZMsD-3jDaChAD8L2ZZU" alt="Logo">
+            
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="menu">
+            <li><a href="main.html">Главная</a></li>
+            <li><a href="#">Акции</a></li>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="auth.php" class="auth-button">Авторизация</a></li>
+        </ul>
+        <style>
+            .auth-button {
+                background: #1a2536 !important;
+                color: white !important;
+                padding: 8px 16px !important;
+                font-weight: bold !important;
+                text-align: center !important;
+                transition: all 0.3s ease !important;
+            }
+            
+            .auth-button:hover {
+                background: #0f1824 !important;
+            }
+        </style>
+        <script>
+            document.querySelector('.menu-toggle').addEventListener('click', function() {
+                this.classList.toggle('active');
+                document.querySelector('.menu').classList.toggle('active');
+            });
+        </script>
+    </div>
+    
+    <main class="main-content">
+        
+        <h2>Комплектующие для ПК</h2>
+        <div class="components-list">
+            <div class="component-card">
+                <img src="https://cdn1.youla.io/files/images/780_780/65/2b/652b6a2e526e04b3a90b9986-2.jpg" alt="Основные комплектующие"> 
+                <div class="component-name">Основные комплектующие</div>
+            </div>
+            <div class="component-card">
+                <img src="https://main-cdn.sbermegamarket.ru/big1/hlr-system/974/712/518/122/422/25/100052035130b0.jpg" alt="Устройства расширения"> 
+                <div class="component-name">Устройства расширения</div>
+            </div>
+            <div class="component-card">
+                <img src="https://p1.zoon.ru/f/8/555a00bd40c08829298efbee_5b0d8ae5d90a6.jpg" alt="Моддинг и обслуживание"> 
+                <div class="component-name">Моддинг и обслуживание</div>
+            </div>
+            <div class="component-card">
+                <img src="https://avatars.mds.yandex.net/i?id=abd7dc50225b84c22e92eeb9c115b07c3eb9b5fa-5530840-images-thumbs&n=13" alt="Комплектующие"> 
+                <div class="component-name">Основные комплектующие для ПК</div>
+            </div>
+        </div>
+        
+        <h2>Популярные категории</h2>
+        <div class="components-list" id="categories-container">
+            <!-- Категории будут загружены через JavaScript -->
+        </div>
+
+        <h2>Производители</h2>
+        <div class="manufacturers">
+            <div class="manufacturer">ASUS</div>
+            <div class="manufacturer">acer</div>
+            <div class="manufacturer">Acer</div>
+            <div class="manufacturer">Apple</div>
+            <div class="manufacturer">Asquarius</div>
+            <div class="manufacturer">COMPAQ</div>
+            <div class="manufacturer">Compaq</div>
+            <div class="manufacturer">DELL</div>
+            <div class="manufacturer">DNS</div>
+        </div>
+    </main>
+    
+    <script src="load-categories.js"></script>
+</body>
+</html>

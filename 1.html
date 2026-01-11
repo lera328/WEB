@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>Комплектующие для ПК</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .menu {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        
+        .auth-button {
+            background: #1a2536 !important;
+            color: white !important;
+            padding: 8px 16px !important;
+            font-weight: bold !important;
+            text-align: center !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .auth-button:hover {
+            background: #0f1824 !important;
+        }
+        
+        .main-content {
+            padding: 20px;
+            flex: 1;
+        }
+        
+        h1, h2 {
+            margin: 20px 0;
+            color: #2c3e50;
+        }
+        
+        .components-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .component-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .component-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+        
+        .component-name {
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .manufacturers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .manufacturer {
+            background-color: #f5f5f5;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Мобильные стили */
+        @media (min-width: 768px) {
+            body {
+                flex-direction: row;
+            }
+            
+            .sidebar {
+                width: 250px;
+                min-height: 100vh;
+            }
+            
+            .menu {
+                flex-direction: column;
+            }
+            
+            .components-list {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .component-card img {
+                height: 150px;
+            }
+        }
+        
+        /* Меню для мобильных */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 767px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="https://20.img.avito.st/image/1/1.U1irNba26bGdkn23gQAYN9yX_bEXtP2zHYL9.gRljDo8KkuQCNStrHOmGgCLdZMsD-3jDaChAD8L2ZZU" alt="Логотип">
+            <span class="logo-text">PcANT</span>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+        <ul class="menu">
+            <li><a href="main.html">Главная</a></li>
+            <li><a href="#">Акции</a></li>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="auth.php" class="auth-button">Авторизация</a></li>
+        </ul>
+    </aside>
+    
+    <main class="main-content">
+        <h1>Комплектующие для ПК</h1>
+        
+        <h2>Комплектующие для ПК</h2>
+        <div class="components-list">
+            <div class="component-card">
+                <img src="https://cdn1.youla.io/files/images/780_780/65/2b/652b6a2e526e04b3a90b9986-2.jpg" alt="Основные комплектующие"> 
+                <div class="component-name">Основные комплектующие</div>
+            </div>
+            <div class="component-card">
+                <img src="https://main-cdn.sbermegamarket.ru/big1/hlr-system/974/712/518/122/422/25/100052035130b0.jpg" alt="Устройства расширения"> 
+                <div class="component-name">Устройства расширения</div>
+            </div>
+            <div class="component-card">
+                <img src="https://p1.zoon.ru/f/8/555a00bd40c08829298efbee_5b0d8ae5d90a6.jpg" alt="Моддинг и обслуживание"> 
+                <div class="component-name">Моддинг и обслуживание</div>
+            </div>
+            <div class="component-card">
+                <img src="https://avatars.mds.yandex.net/i?id=abd7dc50225b84c22e92eeb9c115b07c3eb9b5fa-5530840-images-thumbs&n=13" alt="Комплектующие"> 
+                <div class="component-name">Основные комплектующие для ПК</div>
+            </div>
+        </div>
+        
+        <h2>Популярные категории</h2>
+        <div class="components-list">
+            <a href="Страница 2.html"><div class="component-card">
+                <img src="https://psk68.ru/files/metod/uchebnik_Informatika/user-images/video.png" alt="Видеокарты"> 
+                <div class="component-name">Видеокарты</div>
+            </div></a>
+            <a href="Страница 2.html"><div class="component-card">
+                <img src="https://avatars.mds.yandex.net/i?id=b17667e0d08f8947ce660cd51fb143d4_l-9154408-images-thumbs&n=13" alt="Мониторы"> 
+                <div class="component-name">Мониторы</div>
+            </div></a>
+            <a href="Страница 2.html"><div class="component-card">
+                <img src="http://com-dv.ru/wa-data/public/blog/img/cpu_intel_corei7.jpg" alt="Процессоры"> 
+                <div class="component-name">Процессоры</div>
+            </div></a>
+            <a href="Страница 2.html"><div class="component-card">
+                <img src="https://avatars.mds.yandex.net/get-mpic/6251774/2a00000191fe5e3bf6f13f9652a4a4392181/orig" alt="Оперативная память"> 
+                <div class="component-name">Оперативная память</div>
+            </div></a>
+        </div>
+
+        <h2>Производители</h2>
+        <div class="manufacturers">
+            <div class="manufacturer">ASUS</div>
+            <div class="manufacturer">acer</div>
+            <div class="manufacturer">Acer</div>
+            <div class="manufacturer">Apple</div>
+            <div class="manufacturer">Asquarius</div>
+            <div class="manufacturer">COMPAQ</div>
+            <div class="manufacturer">Compaq</div>
+            <div class="manufacturer">DELL</div>
+            <div class="manufacturer">DNS</div>
+        </div>
+    </main>
+
+    <script>
+        // Мобильное меню
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

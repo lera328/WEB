@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комплектующие для ПК</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="https://20.img.avito.st/image/1/1.U1irNba26bGdkn23gQAYN9yX_bEXtP2zHYL9.gRljDo8KkuQCNStrHOmGgCLdZMsD-3jDaChAD8L2ZZU" alt="Logo">
+            
+        </div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="menu">
+            <li><a href="main.html">Главная</a></li>
+            <li><a href="#">Акции</a></li>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Контакты</a></li>
+        </ul>
+        <script>
+            document.querySelector('.menu-toggle').addEventListener('click', function() {
+                this.classList.toggle('active');
+                document.querySelector('.menu').classList.toggle('active');
+            });
+        </script>
+    </div>
+    <!-- Основное содержимое -->
+    <main class="main-content">
+        <h2>Видеокарты</h2>
+        <div class="components-list">
+            <div class="component-card" onclick="document.getElementById('gpu-modal').style.display='block'">
+                <img src="https://c.dns-shop.ru/thumb/st4/fit/320/250/f7fbf8ab55339ff2f085adeebe70f40a/e19ad47a5d61e1ad9ad38ed88707c481d5ab730d0e21fd4cd2d1d4cb36bf29d8.jpg" alt="Видеокарта">
+                <div class="component-name">Видеокарта KFA2 GeForce RTX 4060 CORE Black</div>
+              </div>
+              <div class="component-card" onclick="document.getElementById('gpu-modal').style.display='block'">
+                <img src="https://c.dns-shop.ru/thumb/st4/fit/320/250/f7fbf8ab55339ff2f085adeebe70f40a/e19ad47a5d61e1ad9ad38ed88707c481d5ab730d0e21fd4cd2d1d4cb36bf29d8.jpg" alt="Видеокарта">
+                <div class="component-name">Видеокарта KFA2 GeForce RTX 4060 CORE Black</div>
+            </div>
+        </div>
+        <div id="gpu-modal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Видеокарта KFA2 GeForce RTX 4060 CORE Black</h2>
+              <img src="https://c.dns-shop.ru/thumb/st4/fit/320/250/f7fbf8ab55339ff2f085adeebe70f40a/e19ad47a5d61e1ad9ad38ed88707c481d5ab730d0e21fd4cd2d1d4cb36bf29d8.jpg">
+              
+              <div class="detail-item"><strong>Графический процессор:</strong> NVIDIA GeForce RTX 4060</div>
+              <div class="detail-item"><strong>Видеопамять:</strong> 8 GB GDDR6</div>
+              <div class="detail-item"><strong>Тактовая частота:</strong> 1830 MHz</div>
+              <div class="price">32 990 ₽</div>
+            </div>
+          </div>
+          <script src="script.js"></script>
+    </main>
+    
+</body>
+</html>
