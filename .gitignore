@@ -4,6 +4,7 @@ config_yandex.php
 # Игнорировать временные файлы
 *.tmp
 *.log
+php_errors.log
 
 # Игнорировать файлы сессий
 sess_*
@@ -26,3 +27,6 @@ Thumbs.db
 .env
 .env.local
 .env.production
+
+# Игнорировать Docker файлы (если нужно)
+docker-compose.override.yml

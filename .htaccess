@@ -1,0 +1,16 @@
+# Включить rewrite engine
+RewriteEngine On
+
+# Правила для красивых URL (если понадобятся)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]
+
+# Настройки PHP
+php_flag display_errors Off
+php_flag log_errors On
+php_value error_log /tmp/php_errors.log
+
+# Безопасность
+Options -Indexes
+ServerSignature Off
