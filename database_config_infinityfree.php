@@ -1,5 +1,5 @@
 <?php
-// Конфигурация базы данных для разных хостингов
+// Конфигурация базы данных для InfinityFree
 class Database {
     private static $instance = null;
     private $conn;
