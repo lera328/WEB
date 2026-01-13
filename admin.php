@@ -13,7 +13,7 @@ if (!isset($_SESSION['user'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Админ-панель</title>
-    <link href="style.css?v=1.4" rel="stylesheet" type="text/css">
+    <link href="style.css?v=4.0" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="sidebar">

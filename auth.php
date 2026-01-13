@@ -1,5 +1,11 @@
 <?php
-require_once 'database_config.php';
+session_start();
+
+// Проверяем есть ли ошибка от Яндекс OAuth
+if (isset($_SESSION['error'])) {
+    $error = $_SESSION['error'];
+    unset($_SESSION['error']); // Удаляем ошибку после отображения
+}
 
 // Обработка отправки формы
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -7,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input_password = $_POST['password'] ?? '';
 
     try {
-        $conn = getDB();
+        $conn = new PDO("mysql:host=localhost;dbname=ACCESSORIES", "root", "741852Bora!");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         $stmt = $conn->prepare("SELECT password FROM admins WHERE username = ?");
         $stmt->execute([$input_login]);
@@ -16,10 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$user) {
             $error = "Пользователь не найден";
         } else {
-            // Проверка пароля (здесь будет продолжение)
             if (password_verify($input_password, $user['password'])) {
                 // Успешная авторизация
-                session_start();
                 $_SESSION['user'] = $input_login;
                 $_SESSION['admin_logged_in'] = true;
                 header('Location: admin.php');
@@ -32,24 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Ошибка соединения с БД: " . $e->getMessage();
     }
 }
-
-// Выбор конфигурации в зависимости от окружения
-if (getenv('PORT') || strpos($_SERVER['HTTP_HOST'] ?? '', '.onrender.com') !== false) {
-    require_once 'config_production.php';
-} else {
-    require_once 'config_yandex.php';
-}
-
-// Генерируем состояние для защиты от CSRF
-session_start();
-$_SESSION['yandex_state'] = bin2hex(random_bytes(16));
-$yandex_auth_url = YANDEX_AUTH_URL . '?' . http_build_query([
-    'response_type' => 'code',
-    'client_id' => YANDEX_CLIENT_ID,
-    'redirect_uri' => YANDEX_REDIRECT_URI,
-    'state' => $_SESSION['yandex_state'],
-    'scope' => 'login:email login:info'
-]);
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +45,7 @@ $yandex_auth_url = YANDEX_AUTH_URL . '?' . http_build_query([
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Авторизация</title>
-    <link href="style.css?v=1.4" rel="stylesheet" type="text/css">
+    <link href="style.css?v=4.0" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="sidebar">
@@ -80,7 +67,7 @@ $yandex_auth_url = YANDEX_AUTH_URL . '?' . http_build_query([
         <script>
             document.querySelector('.menu-toggle').addEventListener('click', function() {
                 this.classList.toggle('active');
-                document.querySelector('.menu').classList.toggle('active');
+                document.querySelector('.menu').toggleClass('active');
             });
         </script>
     </div>
@@ -113,15 +100,20 @@ $yandex_auth_url = YANDEX_AUTH_URL . '?' . http_build_query([
                 <span>или</span>
             </div>
             
-            <button class="yandex-auth-button" onclick="window.location.href='<?php echo $yandex_auth_url; ?>'">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="10" cy="10" r="10" fill="#FFCC00"/>
-                    <rect x="7" y="7" width="6" height="6" fill="#000"/>
-                    <polygon points="10,4 7,6 13,6" fill="#000"/>
-                    <polygon points="10,16 13,14 7,14" fill="#000"/>
+            <a href="<?php 
+                require_once 'config_yandex.php';
+                $params = [
+                    'response_type' => 'code',
+                    'client_id' => YANDEX_CLIENT_ID,
+                    'redirect_uri' => YANDEX_REDIRECT_URI
+                ];
+                echo 'https://oauth.yandex.ru/authorize?' . http_build_query($params);
+            ?>" class="yandex-auth-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
-                Авторизоваться через Яндекс
-            </button>
+                Войти через Яндекс
+            </a>
             
             <div class="auth-links">
                 <p><a href="index.php">На главную</a></p>

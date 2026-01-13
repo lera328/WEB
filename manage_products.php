@@ -72,7 +72,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Управление товарами</title>
-    <link href="style.css?v=1.3" rel="stylesheet" type="text/css">
+    <link href="style.css?v=3.1" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="sidebar">
